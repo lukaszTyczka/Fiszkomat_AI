@@ -1,0 +1,40 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Flashcard from "../components/Flashcard";
+---
+
+<Layout title="Flashcards - Learn with Interactive Flashcards">
+  <main class="container mx-auto py-12 px-4">
+    <div class="max-w-4xl mx-auto bg-white/10 backdrop-blur-lg rounded-xl p-8 border border-white/10 shadow-xl">
+      <h1 class="text-3xl font-bold text-center mb-8 text-white">React Flashcards</h1>
+
+      <p class="text-center mb-8 text-blue-100">
+        Click or tap on the card to flip it and reveal the answer. You can also press Enter or Space.
+      </p>
+
+      <div class="flex flex-col gap-y-3 space-y-8">
+        <Flashcard
+          question="What is the React Hook used to manage state in a functional component?"
+          answer="useState is the React Hook used to manage state in functional components. It returns a stateful value and a function to update it."
+          client:load
+        />
+
+        <Flashcard
+          question="What is the purpose of the useEffect Hook?"
+          answer="useEffect lets you perform side effects in function components. It serves the same purpose as componentDidMount, componentDidUpdate, and componentWillUnmount in React class components, but unified into a single API."
+          client:load
+        />
+
+        <Flashcard
+          question="What is the difference between controlled and uncontrolled components?"
+          answer="Controlled components have their state controlled by React (through props and state). Uncontrolled components maintain their own internal state (like DOM elements) and you access their values through refs."
+          client:load
+        />
+      </div>
+
+      <div class="mt-12 text-center">
+        <p class="text-blue-100">Use flashcards to test your knowledge of React concepts!</p>
+      </div>
+    </div>
+  </main>
+</Layout>

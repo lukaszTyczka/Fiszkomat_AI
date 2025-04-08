@@ -1,11 +1,12 @@
 ---
 import "../styles/global.css";
+import Nav from "../components/Nav.astro";
 
 interface Props {
   title?: string;
 }
 
-const { title = "10x Astro Starter" } = Astro.props;
+const { title = "Fiszkomat AI" } = Astro.props;
 ---
 
 <!doctype html>
@@ -17,7 +18,8 @@ const { title = "10x Astro Starter" } = Astro.props;
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
   </head>
-  <body>
+  <body class="min-h-screen bg-gradient-to-br from-indigo-900 via-purple-900 to-blue-900">
+    <Nav />
     <slot />
   </body>
 </html>

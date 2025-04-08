@@ -1,0 +1,33 @@
+---
+const pathname = Astro.url.pathname;
+---
+
+<nav class="bg-white/10 backdrop-blur-lg border-b border-white/10 w-full">
+  <div class="container mx-auto px-4">
+    <div class="flex items-center justify-between h-16">
+      <div class="flex items-center">
+        <a href="/" class="text-white text-xl font-bold">Fiszkomat AI</a>
+      </div>
+      <div class="flex space-x-4">
+        <a
+          href="/"
+          class={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+            pathname === "/" ? "text-white bg-purple-700/50" : "text-gray-300 hover:text-white hover:bg-purple-700/30"
+          }`}
+        >
+          Home
+        </a>
+        <a
+          href="/flashcards"
+          class={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+            pathname === "/flashcards"
+              ? "text-white bg-purple-700/50"
+              : "text-gray-300 hover:text-white hover:bg-purple-700/30"
+          }`}
+        >
+          Flashcards
+        </a>
+      </div>
+    </div>
+  </div>
+</nav>
