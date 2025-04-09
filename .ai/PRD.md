@@ -94,6 +94,8 @@ Fiszkomat AI to aplikacja webowa wspomagająca proces nauki poprzez automatyczne
 
 ### 5.1. Moduł Uwierzytelniania (Wymagania Ogólne)
 
+W niniejszej wersji, do autentykacji wykorzystujemy Supabase Auth. Supabase Auth umożliwia bezpieczną rejestrację, logowanie oraz zarządzanie sesjami użytkowników przy użyciu wbudowanej tabeli `auth.users`.
+
 Aplikacja "Fiszkomat AI" musi implementować bezpieczny, niezawodny i zgodny z dobrymi praktykami mechanizm uwierzytelniania użytkowników, pozwalający na identyfikację użytkowników i ochronę ich danych. **Konkretna metoda implementacji (np. własny system email/hasło, logowanie przez dostawcę OAuth jak Google, wykorzystanie platformy typu BaaS jak Supabase Auth) zostanie wybrana na etapie projektowania technicznego / implementacji.** Niezależnie od wybranej metody, muszą być spełnione następujące wymagania:
 
 * **FR_AUTH_1 (Identyfikacja Użytkownika):** Musi istnieć jednoznaczny sposób identyfikacji każdego zarejestrowanego użytkownika w systemie (np. unikalny ID użytkownika, adres email).
@@ -281,4 +283,3 @@ Wersja MVP aplikacji "Fiszkomat AI" będzie uznana za gotową do udostępnienia 
 * **RC7 (Minimalna Użyteczność Potwierdzona):** Przeprowadzono wewnętrzny przegląd użyteczności potwierdzający, że kluczowe przepływy są zrozumiałe i możliwe do wykonania.
 * **RC8 (Przygotowanie dla Testerów):** Przygotowano krótką instrukcję dla grupy fokusowej (dostęp, logowanie, kluczowe funkcje, sposób zgłaszania uwag).
 * **RC9 (Spełnienie Kluczowych NFR):** Potwierdzono, że aplikacja spełnia najważniejsze wymagania niefunkcjonalne (Sekcja 8) na akceptowalnym poziomie dla MVP.
-e
