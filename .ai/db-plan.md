@@ -105,3 +105,46 @@ CREATE POLICY modify_own_flashcards ON flashcards
 - Użyto funkcji `gen_random_uuid()` zakładając, że rozszerzenie odpowiedzialne za generowanie UUID (np. pgcrypto lub uuid-ossp) jest zainstalowane.
 - Polityki RLS opierają się na funkcji `auth.uid()`, która zwraca identyfikator aktualnie zalogowanego użytkownika w środowisku Supabase.
 - Schemat jest znormalizowany do 3NF, zapewniając integralność i skalowalność danych dla MVP. 
+
+## 6. Tabela statystyk generowania AI
+
+Do śledzenia wskaźników akceptacji/odrzucenia fiszek generowanych przez AI, dodajemy dodatkową tabelę:
+
+```sql
+CREATE TABLE ai_generation_stats (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    user_id UUID NOT NULL,
+    deck_id UUID NOT NULL,
+    session_id UUID NOT NULL,
+    ai_model_name VARCHAR NOT NULL,
+    text_length INTEGER NOT NULL,
+    cards_generated INTEGER NOT NULL,
+    cards_accepted INTEGER NOT NULL,
+    cards_rejected INTEGER NOT NULL,
+    generation_timestamp TIMESTAMPTZ NOT NULL DEFAULT now(),
+    CONSTRAINT fk_user FOREIGN KEY (user_id) REFERENCES auth.users(id),
+    CONSTRAINT fk_deck FOREIGN KEY (deck_id) REFERENCES decks(id) ON DELETE CASCADE
+);
+```
+
+**Indeksy:**
+
+```sql
+CREATE INDEX ai_generation_stats_user_id_idx ON ai_generation_stats (user_id);
+CREATE INDEX ai_generation_stats_deck_id_idx ON ai_generation_stats (deck_id);
+CREATE INDEX ai_generation_stats_timestamp_idx ON ai_generation_stats (generation_timestamp);
+```
+
+**RLS:**
+
+```sql
+ALTER TABLE ai_generation_stats ENABLE ROW LEVEL SECURITY;
+
+CREATE POLICY select_own_stats ON ai_generation_stats 
+    FOR SELECT USING (user_id = auth.uid());
+
+CREATE POLICY insert_own_stats ON ai_generation_stats
+    FOR INSERT WITH CHECK (user_id = auth.uid());
+```
+
+Ta tabela umożliwi śledzenie wskaźników akceptacji fiszek AI dla każdej sesji generowania oraz globalnie dla użytkownika lub talii, zgodnie z celem biznesowym określonym w PRD. 
