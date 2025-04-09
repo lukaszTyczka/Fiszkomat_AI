@@ -22,7 +22,6 @@ Na podstawie wymagań z PRD oraz podjętych decyzji, poniżej znajduje się pods
     * **Interfejs:** Biblioteki klienckie Supabase (`supabase-js`).
 * **Uwierzytelnianie:**
     * **Rozwiązanie:** **Supabase Auth**
-    * **Metoda dla MVP:** Logowanie przez **Google**.
 * **Integracja z AI:**
     * **Bramka/Router AI:** **OpenRouter.ai**
     * **Wywołania:** Realizowane bezpiecznie z **Supabase Edge Functions**.

@@ -281,3 +281,4 @@ Wersja MVP aplikacji "Fiszkomat AI" będzie uznana za gotową do udostępnienia 
 * **RC7 (Minimalna Użyteczność Potwierdzona):** Przeprowadzono wewnętrzny przegląd użyteczności potwierdzający, że kluczowe przepływy są zrozumiałe i możliwe do wykonania.
 * **RC8 (Przygotowanie dla Testerów):** Przygotowano krótką instrukcję dla grupy fokusowej (dostęp, logowanie, kluczowe funkcje, sposób zgłaszania uwag).
 * **RC9 (Spełnienie Kluczowych NFR):** Potwierdzono, że aplikacja spełnia najważniejsze wymagania niefunkcjonalne (Sekcja 8) na akceptowalnym poziomie dla MVP.
+e
