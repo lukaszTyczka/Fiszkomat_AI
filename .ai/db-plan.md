@@ -148,3 +148,35 @@ CREATE POLICY insert_own_stats ON ai_generation_stats
 ```
 
 Ta tabela umożliwi śledzenie wskaźników akceptacji fiszek AI dla każdej sesji generowania oraz globalnie dla użytkownika lub talii, zgodnie z celem biznesowym określonym w PRD. 
+
+## 7. Tabela `error_logs`
+
+```sql
+CREATE TABLE error_logs (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    user_id UUID, -- opcjonalnie, może być NULL, jeśli błąd nie jest związany z konkretnym użytkownikiem
+    error_level VARCHAR(50) NOT NULL, -- np. 'ERROR', 'WARN', 'INFO'
+    error_message TEXT NOT NULL,
+    error_stack TEXT, -- opcjonalne informacje o stack trace
+    error_context JSONB, -- dodatkowy kontekst w formacie JSON, np. dodatkowe dane błędu
+    created_at TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+```
+
+**Indeksy:**
+
+```sql
+CREATE INDEX error_logs_created_at_idx ON error_logs (created_at);
+```
+
+**RLS:**
+
+```sql
+ALTER TABLE error_logs ENABLE ROW LEVEL SECURITY;
+
+CREATE POLICY select_error_logs ON error_logs 
+    FOR SELECT USING (true); -- wstępna polityka, która może być zawężona tylko dla administratorów
+
+CREATE POLICY insert_error_logs ON error_logs
+    FOR INSERT WITH CHECK (true);
+``` 
