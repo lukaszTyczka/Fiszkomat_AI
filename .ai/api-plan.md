@@ -114,6 +114,8 @@
         "id": "uuid",
         "question": "Question text",
         "answer": "Answer text",
+        "origin": "user",
+        "ai_model_name": null,
         "created_at": "timestamp",
         "updated_at": "timestamp"
       }
@@ -143,6 +145,8 @@
     "deck_id": "uuid",
     "question": "Question text",
     "answer": "Answer text",
+    "origin": "user",
+    "ai_model_name": null,
     "created_at": "timestamp",
     "updated_at": "timestamp"
   }
@@ -213,7 +217,15 @@
 - **Response**:
   ```json
   {
-    "suggestions": [{ "temp_id": "temp-uuid", "question": "Generated question", "answer": "Generated answer" }]
+    "suggestions": [
+      {
+        "temp_id": "temp-uuid",
+        "question": "Generated question",
+        "answer": "Generated answer",
+        "origin": "ai",
+        "ai_model_name": "model-name"
+      }
+    ]
   }
   ```
 - **Success Codes**: 200 OK
@@ -325,6 +337,7 @@
   - The `name` field is required, must not be empty, and must be unique for the user (max 100 characters).
 - **Flashcards**:
   - `question` and `answer` fields are required, must not be empty, and cannot exceed 400 characters each.
+  - The API automatically sets the flashcard `origin` to "user" for manually created flashcards, and to "ai" for AI-generated flashcards. When `origin` is "ai", the optional `ai_model_name` field may be provided to indicate the AI model used.
 - **AI Flashcard Generation**:
   - The `source_text` must be between 1000 and 10000 characters.
   - The AI generation process includes a validation and, if necessary, a secondary request to ensure the generated question and answer do not exceed 400 characters.
