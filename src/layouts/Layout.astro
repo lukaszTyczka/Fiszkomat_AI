@@ -1,6 +1,7 @@
 ---
 import "../styles/global.css";
 import Nav from "../components/Nav.astro";
+import { Toaster } from "@/components/ui/sonner";
 
 interface Props {
   title?: string;
@@ -21,6 +22,7 @@ const { title = "Fiszkomat AI" } = Astro.props;
   <body class="min-h-screen bg-gradient-to-br from-indigo-900 via-purple-900 to-blue-900">
     <Nav />
     <slot />
+    <Toaster richColors closeButton />
   </body>
 </html>
 

@@ -12,7 +12,7 @@ Widok będzie dostępny pod ścieżką `/decks`. Wymaga zalogowanego użytkownik
 
 Hierarchia komponentów dla widoku listy decków:
 src/pages/decks.astro (Strona Astro)
-└── src/layouts/MainLayout.astro (Layout)
+└── src/layouts/Layout.astro (Layout)
 └── src/components/DeckList.tsx (Komponent React - client:load)
 ├── src/components/ui/button.tsx (Przycisk "Dodaj Deck" - shadcn) -> Otwiera CreateDeckDialog
 ├── src/components/ui/spinner.tsx (Wskaźnik ładowania - shadcn/custom) [Warunkowo]

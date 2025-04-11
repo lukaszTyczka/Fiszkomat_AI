@@ -1,0 +1,18 @@
+---
+import Layout from "../layouts/Layout.astro";
+import DeckList from "../components/DeckList";
+import { getUser } from "../lib/auth";
+
+const user = await getUser(Astro);
+
+if (!user) {
+  return Astro.redirect("/login");
+}
+---
+
+<Layout title="Your Decks">
+  <div class="container py-8">
+    <h1 class="text-4xl font-bold mb-8">Your Decks</h1>
+    <DeckList client:load />
+  </div>
+</Layout>
