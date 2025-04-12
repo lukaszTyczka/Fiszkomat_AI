@@ -27,6 +27,16 @@ const pathname = Astro.url.pathname;
         >
           Flashcards
         </a>
+        <a
+          href="/testOpenRouter"
+          class={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+            pathname === "/testOpenRouter"
+              ? "text-white bg-purple-700/50"
+              : "text-gray-300 hover:text-white hover:bg-purple-700/30"
+          }`}
+        >
+          Test API
+        </a>
       </div>
     </div>
   </div>

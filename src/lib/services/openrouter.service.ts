@@ -37,7 +37,7 @@ export class OpenRouterService {
 
   constructor(config?: OpenRouterConfig) {
     // Initialize API endpoint and key from environment variables
-    this.apiEndpoint = import.meta.env.OPENROUTER_API_ENDPOINT || "https://openrouter.ai/api/v1";
+    this.apiEndpoint = import.meta.env.OPENROUTER_API_ENDPOINT || "https://openrouter.ai/api/v1/chat/completions";
     this.apiKey = config?.apiKey || import.meta.env.OPENROUTER_API_KEY;
 
     if (!this.apiKey) {
@@ -45,7 +45,8 @@ export class OpenRouterService {
     }
 
     // Initialize model configuration
-    this.modelName = config?.modelName || "gpt-4-openrouter";
+    this.modelName = config?.modelName || "openai/gpt-4o-mini";
+
     this.modelParameters = {
       temperature: config?.modelParameters?.temperature ?? 0.7,
       max_tokens: config?.modelParameters?.max_tokens ?? 1500,
@@ -141,9 +142,10 @@ export class OpenRouterService {
           content: userMessage,
         },
       ],
+      message: "What?",
       model: this.modelName,
       ...this.modelParameters,
-      response_format: this.responseFormat,
+      //response_format: this.responseFormat,
     };
   }
 
@@ -185,8 +187,8 @@ export class OpenRouterService {
       const error = (await response.json().catch(() => ({ message: "Unknown error" }))) as ApiErrorResponse;
       throw new Error(`API request failed: ${error.message}`);
     }
-
-    return response.json();
+    const rawResponse = await response.json();
+    return rawResponse.choices[0].message;
   }
 
   /**

@@ -8,10 +8,8 @@ export interface ModelParameters {
 
 // Base schema for chat response
 const responseSchema = z.object({
-  message: z.string(),
-  metadata: z.object({
-    timestamp: z.string(),
-  }),
+  role: z.string(),
+  content: z.string(),
 });
 
 // Response format configuration

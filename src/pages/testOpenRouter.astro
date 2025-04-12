@@ -1,0 +1,74 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { OpenRouterService } from "../lib/services/openrouter.service";
+
+let response = "";
+let error = "";
+
+if (Astro.request.method === "POST") {
+  try {
+    const data = await Astro.request.formData();
+    const message = data.get("message")?.toString() || "";
+    const systemMessage = data.get("systemMessage")?.toString();
+
+    const openRouter = new OpenRouterService();
+    if (systemMessage) {
+      openRouter.setSystemMessage(systemMessage);
+    }
+
+    const result = await openRouter.sendChatRequest(message);
+    response = JSON.stringify(result, null, 2);
+  } catch (e) {
+    error = e instanceof Error ? e.message : "An unknown error occurred";
+  }
+}
+---
+
+<Layout title="Test OpenRouter">
+  <main class="container mx-auto p-4">
+    <h1 class="text-2xl font-bold mb-4">Test OpenRouter Service</h1>
+
+    <form method="POST" class="space-y-4">
+      <div>
+        <label for="systemMessage" class="block text-sm font-medium mb-1"> System Message (optional): </label>
+        <textarea
+          id="systemMessage"
+          name="systemMessage"
+          rows="2"
+          class="w-full p-2 border rounded"
+          placeholder="Enter system message..."></textarea>
+      </div>
+
+      <div>
+        <label for="message" class="block text-sm font-medium mb-1"> User Message: </label>
+        <textarea
+          id="message"
+          name="message"
+          rows="3"
+          class="w-full p-2 border rounded"
+          required
+          placeholder="Enter your message..."></textarea>
+      </div>
+
+      <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"> Send Request </button>
+    </form>
+
+    {
+      error && (
+        <div class="mt-4 p-4 bg-red-100 border border-red-400 rounded">
+          <h2 class="text-lg font-semibold text-red-700">Error:</h2>
+          <pre class="mt-2 whitespace-pre-wrap">{error}</pre>
+        </div>
+      )
+    }
+
+    {
+      response && (
+        <div class="mt-4">
+          <h2 class="text-lg font-semibold">Response:</h2>
+          <pre class="mt-2 p-4 bg-gray-100 rounded overflow-auto">{response}</pre>
+        </div>
+      )
+    }
+  </main>
+</Layout>
