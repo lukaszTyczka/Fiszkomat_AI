@@ -1,6 +1,5 @@
 # Fiszkomat AI
 
-
 ## Project Description
 
 Fiszkomat AI is a minimum viable product (MVP) web application designed to streamline the process of creating flashcards from user notes. Using artificial intelligence, Fiszkomat AI automatically generates Q&A flashcards from pasted text (e.g., lecture notes). The platform also supports manual flashcard creation, grouping flashcards into decks, and learning via a spaced repetition system (SRS) to enhance retention.
@@ -8,7 +7,7 @@ Fiszkomat AI is a minimum viable product (MVP) web application designed to strea
 ## Tech Stack
 
 - **Frontend:** Astro 5, React 19, TypeScript 5, Tailwind CSS, shadcn/ui
-- **Backend:** Supabase Edge Functions (TypeScript, Deno), Supabase Auth 
+- **Backend:** Supabase Edge Functions (TypeScript, Deno), Supabase Auth
 - **Database:** PostgreSQL (managed by Supabase)
 - **AI Integration:** OpenRouter.ai (acts as a gateway to multiple language models)
 - **CI/CD & Deployment:** GitHub Actions, Docker, DigitalOcean (App Platform or Droplet)
@@ -24,18 +23,21 @@ Fiszkomat AI is a minimum viable product (MVP) web application designed to strea
 ### Installation
 
 1. **Clone the repository:**
+
    ```bash
    git clone <repository_url>
    cd Fiszkomat_AI
    ```
 
 2. **Install dependencies:**
+
    ```bash
    npm install
    ```
 
 3. **Configure environment variables:**  
    Create a `.env` file at the project root with the following content:
+
    ```env
    SUPABASE_URL=your_supabase_url
    SUPABASE_ANON_KEY=your_supabase_anon_key
@@ -57,6 +59,15 @@ Fiszkomat AI is a minimum viable product (MVP) web application designed to strea
 - `npm run lint:fix` — Automatically fixes linting issues
 - `npm run format` — Formats the project files with Prettier
 
+## Testing
+
+The project employs a multi-layered testing strategy to ensure code quality and functionality, as detailed in the [Test Plan](./.ai/TestPlan.md):
+
+- **Unit Tests:** Verify individual components and functions using `Vitest`, `React Testing Library` (for frontend).
+- **End-to-End (E2E) Tests:** Validate complete user flows through the UI using `Playwright`.
+
+Tests are integrated into the CI/CD pipeline (GitHub Actions) to run automatically on code changes.
+
 ## Project Scope
 
 The scope of Fiszkomat AI (MVP) includes:
@@ -73,4 +84,4 @@ The project is currently in MVP stage and serves primarily as a learning project
 
 ## License
 
-This project is licensed under the MIT License. 
+This project is licensed under the MIT License.

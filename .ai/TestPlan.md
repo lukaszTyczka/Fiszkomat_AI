@@ -92,7 +92,7 @@ Przyjęta zostanie mieszana strategia testowania, łącząca testy manualne i au
 
 - **Cel:** Weryfikacja poprawności działania małych, izolowanych fragmentów kodu (funkcji, metod, komponentów UI).
 - **Technologia/Narzędzia:**
-  - **Frontend (Astro/React/TypeScript):** `Vitest` lub `Jest`, `React Testing Library`.
+  - **Frontend (Astro/React/TypeScript):** `Vitest`, `React Testing Library`.
   - **Backend (Supabase Edge Functions - Deno/TypeScript):** Wbudowany runner testów `Deno` (`deno test`) lub kompatybilne biblioteki.
 - **Zakres:**
   - Logika komponentów React (np. walidacja formularzy, obsługa stanu, renderowanie warunkowe).
@@ -104,7 +104,7 @@ Przyjęta zostanie mieszana strategia testowania, łącząca testy manualne i au
 
 - **Cel:** Weryfikacja interakcji pomiędzy różnymi modułami/komponentami systemu oraz z usługami zewnętrznymi.
 - **Technologia/Narzędzia:**
-  - `Vitest`/`Jest` z możliwością mockowania lub testowania na tle lokalnej instancji Supabase (jeśli dostępna).
+  - `Vitest` z możliwością mockowania lub testowania na tle lokalnej instancji Supabase (jeśli dostępna).
   - Narzędzia Supabase do lokalnego developmentu i testowania Edge Functions.
   - Potencjalnie `Supertest` (lub odpowiednik Deno) do testowania API Edge Functions.
 - **Zakres:**
@@ -118,7 +118,7 @@ Przyjęta zostanie mieszana strategia testowania, łącząca testy manualne i au
 
 - **Cel:** Weryfikacja kompletnych przepływów użytkownika (User Journeys) z perspektywy interfejsu użytkownika, symulując realne interakcje.
 - **Technologia/Narzędzia:**
-  - `Playwright` (preferowane ze względu na nowoczesność i dobrą integrację z TS/JS) lub `Cypress`.
+  - `Playwright` (preferowane ze względu na nowoczesność i dobrą integrację z TS/JS).
 - **Zakres (Przykładowe scenariusze oparte na US/FR):**
   - **Pełny cykl życia fiszki AI:** Rejestracja -> Logowanie -> Utworzenie Grupy -> Wklejenie tekstu -> Wygenerowanie fiszek -> Akceptacja kilku fiszek -> Odrzucenie kilku fiszek -> Przejrzenie zaakceptowanych fiszek w grupie -> Wylogowanie.
   - **Ręczne dodawanie i nauka:** Logowanie -> Przejście do istniejącej grupy -> Dodanie fiszki ręcznie (z walidacją) -> Rozpoczęcie sesji nauki SRS dla tej grupy -> Ocena dodanej fiszki -> Zakończenie sesji.
